@@ -1,0 +1,74 @@
+<div class="user-profile">
+  <div class="container">
+    <!-- Loading -->
+    <div *ngIf="isLoading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <!-- User Card -->
+    <div *ngIf="user" class="card">
+      <!-- Header -->
+      <div class="card-header">
+        <img [src]="user.avatar_url" alt="{{ user.login }}" class="avatar" />
+        <div class="user-info">
+          <h1>{{ user.name || user.login }}</h1>
+          <p class="username">{{ user.login }}</p>
+          <p *ngIf="user.bio">{{ user.bio }}</p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat">
+          <p class="stat-number">{{ user.public_repos }}</p>
+          <p class="stat-label">Repos</p>
+        </div>
+        <div class="stat">
+          <p class="stat-number">{{ user.followers }}</p>
+          <p class="stat-label">Followers</p>
+        </div>
+        <div class="stat">
+          <p class="stat-number">{{ user.following }}</p>
+          <p class="stat-label">Following</p>
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div class="details">
+        <p *ngIf="user.company">{{ user.company }}</p>
+        <p *ngIf="user.location">{{ user.location }}</p>
+        <p *ngIf="user.email">
+          <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+        </p>
+        <p *ngIf="user.blog">
+           <a [href]="user.blog" target="_blank">{{ user.blog }}</a>
+        </p>
+        <p>{{ formatDate(user.created_at) }}</p>
+      </div>
+
+      <div *ngIf="repositories.length" class="repositories">
+        <h2>Recent Repositories</h2>
+        <div class="repo-list">
+          <div *ngFor="let repo of repositories.slice(0, 3)" class="repo">
+            <a [href]="repo.html_url" target="_blank">{{ repo.name }}</a>
+            <p *ngIf="repo.description">{{ repo.description }}</p>
+            <div class="repo-stats">
+              <span *ngIf="repo.language">{{ repo.language }}</span>
+              <span> {{ repo.stargazers_count || 0 }}</span>
+              <span> {{ repo.forks_count || 0 }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="github-link">
+        <a [href]="user.html_url" target="_blank">View Profile on GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>

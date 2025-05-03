@@ -1,0 +1,62 @@
+<div class="search-history">
+  <div class="container">
+    <div class="header">
+      <h1>Search History</h1>
+      <button 
+        *ngIf="searchHistory.length > 0"
+        (click)="clearAllHistory()"
+        class="clear-btn">
+        Clear All History
+      </button>
+    </div>
+    <div *ngIf="searchHistory.length === 0" class="empty-state">
+      <p>No search history found. Try searching for GitHub users first.</p>
+      <a routerLink="/search">Go to Search</a>
+    </div>
+    <div *ngIf="searchHistory.length > 0" class="history-list">
+      <div *ngFor="let item of paginatedHistory" class="history-card">
+        <div class="card-content">
+          <div>
+            <img *ngIf="item.successful" [src]="item.result?.avatar_url" alt="{{ item.result?.login }}" class="user-avatar">
+            <div class="query-status">
+              <span class="query">{{ item.query }}</span>
+              <span 
+                [ngClass]="item.successful ? 'status success' : 'status failed'">
+                {{ item.successful ? 'Success' : 'Not Found' }}
+              </span>
+            </div>
+            <p class="timestamp">{{ item.timestamp | timeAgo }}</p>
+          </div>
+          <div class="actions">
+            <a *ngIf="item.successful" 
+               [routerLink]="['/user', item.result?.login]">
+              View Profile
+            </a>
+            <button (click)="clearHistoryItem(item.id)" class="delete-btn">
+              ✕
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="searchHistory.length > itemsPerPage" class="pagination">
+    <button (click)="goToPrevChunk()" [disabled]="currentChunkStart === 1">
+      « Prev 10
+    </button>
+  
+    <button 
+      *ngFor="let page of currentChunkPages" 
+      (click)="goToPage(page)" 
+      [class.active]="currentPage === page">
+      {{ page }}
+    </button>
+  
+    <button 
+      (click)="goToNextChunk()" 
+      [disabled]="currentChunkStart + pagesPerChunk > totalPages">
+      Next 10 »
+    </button>
+  </div>
+  
+</div>

@@ -1,0 +1,26 @@
+<div class="search-wrapper">
+  <h1 class="title">Search GitHub Users</h1>
+
+  <div class="form-group">
+    <input
+      [formControl]="searchControl"
+      type="text"
+      placeholder="Enter GitHub username"
+      class="input"
+    />
+    <button (click)="searchControl.value && onSearch(searchControl.value)" class="search-btn">
+      Search
+    </button>
+    <button *ngIf="searchControl.value" (click)="clearSearch()" class="clear-btn" aria-label="Clear">
+      &times;
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="spinner"></div>
+
+  <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
+
+  <div *ngIf="user" class="result">
+    <app-user-card [user]="user"></app-user-card>
+  </div>
+</div>

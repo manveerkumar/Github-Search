@@ -1,0 +1,35 @@
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 1rem 2rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #24292e;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #24292e;
+  padding-bottom: 4px;
+  transition: border-bottom 0.2s ease-in-out;
+}
+
+.nav-link.active {
+  border-bottom: 2px solid #0366d6;
+  color: #0366d6;
+}
