@@ -1,18 +1,14 @@
 <div class="user-profile">
   <div class="container">
-    <!-- Loading -->
     <div *ngIf="isLoading" class="loading">
       <div class="spinner"></div>
     </div>
 
-    <!-- Error -->
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
 
-    <!-- User Card -->
     <div *ngIf="user" class="card">
-      <!-- Header -->
       <div class="card-header">
         <img [src]="user.avatar_url" alt="{{ user.login }}" class="avatar" />
         <div class="user-info">
@@ -22,7 +18,6 @@
         </div>
       </div>
 
-      <!-- Stats -->
       <div class="stats">
         <div class="stat">
           <p class="stat-number">{{ user.public_repos }}</p>
@@ -38,10 +33,9 @@
         </div>
       </div>
 
-      <!-- Details -->
       <div class="details">
-        <p *ngIf="user.company">{{ user.company }}</p>
-        <p *ngIf="user.location">{{ user.location }}</p>
+        <p *ngIf="user.company">Company: {{ user.company }}</p>
+        <p *ngIf="user.location">Location: {{ user.location }}</p>
         <p *ngIf="user.email">
           <a href="mailto:{{ user.email }}">{{ user.email }}</a>
         </p>
@@ -55,12 +49,13 @@
         <h2>Recent Repositories</h2>
         <div class="repo-list">
           <div *ngFor="let repo of repositories.slice(0, 3)" class="repo">
+            <!-- <div *ngFor="let repo of repositories" class="repo"> -->
             <a [href]="repo.html_url" target="_blank">{{ repo.name }}</a>
-            <p *ngIf="repo.description">{{ repo.description }}</p>
+            <p *ngIf="repo.description">Repository Description: {{ repo.description }}</p>
             <div class="repo-stats">
-              <span *ngIf="repo.language">{{ repo.language }}</span>
-              <span> {{ repo.stargazers_count || 0 }}</span>
-              <span> {{ repo.forks_count || 0 }}</span>
+              <span *ngIf="repo.language">Description: {{ repo.language }}</span>
+              <span>Stargazers Count: {{ repo.stargazers_count || 0 }}</span>
+              <span>Forks Count: {{ repo.forks_count || 0 }}</span>
             </div>
           </div>
         </div>

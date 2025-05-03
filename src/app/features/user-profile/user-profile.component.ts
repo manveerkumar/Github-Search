@@ -64,7 +64,6 @@ export class UserProfileComponent {
         );
       },
       error: () => {
-        // Silently fail - repositories aren't critical to view
       }
     });
   }
@@ -79,7 +78,6 @@ export class UserProfileComponent {
   }
 
   getLanguageColor(language: string): string {
-    // Simple language to color mapping
     const colors: Record<string, string> = {
       'JavaScript': '#f1e05a',
       'TypeScript': '#2b7489',
@@ -97,7 +95,7 @@ export class UserProfileComponent {
       'Dart': '#00B4AB'
     };
     
-    return colors[language] || '#8257e5'; // Return a default color if not found
+    return colors[language] || '#8257e5';
   }
 
 }
