@@ -1,6 +1,80 @@
-# GithubTracker
+GitHub Search App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+Overview
+This application uses the GitHub API to provide a user-friendly interface for searching and viewing GitHub user profiles. Built with Angular 19 using standalone components architecture, it offers a responsive and intuitive user experience.
+Features
+
+User Search: Search for GitHub users by username
+User Profiles: View detailed user information including:
+
+Profile details (name, bio, location, etc.)
+Repositories count, followers, and following statistics
+Latest repositories with descriptions and stats
+
+
+Search History:
+
+Automatic tracking of search queries
+History management (view, delete individual entries, clear all)
+Timestamps with "time ago" format
+
+
+Responsive Design: Fully responsive interface that works on mobile and desktop
+
+Technologies
+
+Angular 19: Utilizing standalone components and the latest Angular features
+GitHub API: Integration with GitHub's REST API
+RxJS: Reactive programming for handling asynchronous operations
+Local Storage: Persistent search history between sessions
+
+Project Structure
+github-search-app/
+├── src/
+│   ├── core/
+│   │   ├── services/
+│   │   │   ├── github.service.ts               # GitHub API integration
+│   │   │   └── search-history.service.ts       # Search history management
+│   │   └── models/
+│   │       ├── user.model.ts                   # GitHub user data model
+│   │       └── search-record.model.ts          # Search history data model
+│   ├── app/
+│   │   ├── features/
+│   │   │   ├── history/                        # History management
+│   │   │   ├── search/                         # Search functionality
+│   │   │   └── user-profile/                   # User profile details
+│   │   ├── shared/
+│   │   │   ├── components/                     # Reusable components
+│   │   │   └── pipes/                          # Custom pipes
+│   │   ├── app.component.ts                    # Root component
+│   │   ├── app.config.ts                       # App configuration
+│   │   └── app.routes.ts                       # Routing configuration
+│   ├── main.ts                                 # App entry point
+│   └── styles.css                              # Global styles
+└── package.json                                # Dependencies
+
+
+Getting Started
+Prerequisites
+
+Node.js (v16 or higher)
+npm (v8 or higher)
+
+Installation
+
+# GithubTracker
+Clone the repository:
+```bash
+git clone https://github.com/manveerkumar/Github-Search.git
+
+cd Github-Search
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
 
 ## Development server
 
